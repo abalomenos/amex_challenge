@@ -4,7 +4,7 @@ const app = express();
 
 // Simple Route
 app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
+    res.status(200).json({ "message": ["Hello", "From", "World"] })
 });
 
 // Set port
