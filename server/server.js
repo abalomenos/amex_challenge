@@ -46,36 +46,63 @@ app.post("/login", (req, res) => {
     axios({
         method: "post",
         url: "https://global.americanexpress.com/myca/logon/us/action/login",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-        },
         data: qs.stringify(data)
       })
       .then((response) => {
-        // Add response to localStorage
-        localStorage.setItem("responseAmex", JSON.stringify(response.data));
+
+          responseText = JSON.stringify(response.data);
+          jsonObj = JSON.parse(responseText);
         
-        console.log(response.data);
-        res.json(response.data);
+          amexErrorCode = jsonObj.errorCode;
+          amexErrorMessage = jsonObj.errorMessage;
+          console.log("ErrorText " + amexErrorCode);
+          console.log("ErrorMessage " + amexErrorMessage);
+          if(amexErrorCode == "LGON001")
+          {
+            responseText = amexErrorMessage;
+          }
+
+        // Add response to localStorage
+        localStorage.setItem("responseAmex", responseText);
+        
+        console.log("ResponseText " + responseText);
+        res.json(responseText);
       }, (error) => {
         console.log(error); 
        }).catch(err => console.log(err));
 
     // Amex login <---
 
+    // // Test Data to avoid Rate Limiting --->
     // const testData = {
-    //     statusCode: 2,
-    //     errorCode: 'LGON001',
-    //     errorMessage: 'Your User ID or Password is incorrect. Please try again.',
-    //     redirectUrl: '',
-    //     debugInfo: '',
-    //     reauth: null,
-    //     challenge: false
+    //     "statusCode": 2,
+    //     "errorCode": 'LGON001',
+    //     "errorMessage": 'Your User ID or Password is incorrect. Please try again.',
+    //     "redirectUrl": '',
+    //     "debugInfo": '',
+    //     "reauth": null,
+    //     "challenge": false
     // }
 
-    // localStorage.setItem('responseAmex', JSON.stringify(testData));
-    //     console.log(testData);
-    //     res.json(testData);
+    // responseText = JSON.stringify(testData);
+    // jsonObj = JSON.parse(responseText);
+  
+    // amexErrorCode = jsonObj.errorCode;
+    // amexErrorMessage = jsonObj.errorMessage;
+    // console.log("ErrorText " + amexErrorCode);
+    // console.log("ErrorMessage " + amexErrorMessage);
+    // if(amexErrorCode == "LGON001")
+    // {
+    //   responseText = amexErrorMessage;
+    // }
+    
+    // localStorage.setItem("responseAmex", responseText);
+
+    // console.log(responseText);
+    // res.json(responseText);
+
+    // // Test Data to avoid Rate Limiting <---
+
 });
 // API Routes <---
 
