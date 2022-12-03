@@ -9,8 +9,8 @@
 
 ## Demo
 
-### Login response incorrect credentials
+### Login Response - Incorrect Credentials
 ![Demo1](demo/demoIncorrectLogin.png "Incorrect credentials")
 
-### Login response correct credentials and/or any other error
+### Login Response - Correct Credentials AND/OR Other Error
 ![Demo2](demo/demoCoorectCredentials.png "Correct credentials and/or any other error")
