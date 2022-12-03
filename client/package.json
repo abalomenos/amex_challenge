@@ -1,7 +1,9 @@
 {
   "name": "client",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "author": "Argiris Balomenos",
+  "license": "ISC",
   "dependencies": {
     "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11.10.5",
@@ -11,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "formik": "^2.2.9",
     "framer-motion": "^7.6.15",
+    "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.4",

@@ -13,11 +13,11 @@ const Login = () => {
             validationSchema: Yup.object({
                 UserID: Yup.string()
                 .required("Username is required.")
-                .min(6, "Username must be at least 6 characters.")
+                .min(5, "Username must be at least 5 characters.")
                 .max(20, "Username cannot exceed 20 characters."),
                 Password: Yup.string()
                 .required("Password is required.")
-                .min(6, "Password must be at least 6 characters.")
+                .min(8, "Password must be at least 8 characters.")
                 .max(20, "Password cannot exceed 20 characters."),
             }),
             onSubmit: (values, actions) => {
@@ -26,7 +26,7 @@ const Login = () => {
                 actions.resetForm();
                 
                 // POST login input --->
-                fetch("http://localhost:3001/login", {
+                fetch("/api/login", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const Login = () => {
                 .then(data => {
 
                     // GET results from backend localStorage --->
-                    fetch("http://localhost:3001/results", {
+                    fetch("/api/results", {
                         method: "GET",
                     })
                     .catch(err => {
